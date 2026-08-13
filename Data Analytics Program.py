@@ -7,7 +7,7 @@
 
 
 
-# In[62]:
+# In[ ]:
 
 
 import pandas as pd
@@ -44,6 +44,14 @@ from IPython.display import display, Markdown
 # prints an error message and returns None
 
 def read_dataset():
+    """
+    Load the dataset from a CSV file and return it as a pandas DataFrame.
+
+    Returns
+    -------
+    DataFrame or None
+        The loaded dataset if found, otherwise None with an error message.
+    """
     try:
         df = pd.read_csv("C:/Documents/data.csv")
         return df
@@ -64,6 +72,16 @@ def read_dataset():
 
 
 def inspect_df():
+    """
+    Interactive menu for inspecting the dataset.
+
+    Allows the user to:
+    - View the first 5 rows
+    - View the last 5 rows
+    - Review dataset structure (df.info)
+
+    This function does not return anything; it prints results directly.
+    """
     while True:
         print("\n------------------------------")
         print("-----Data Inspection Menu-----")
@@ -105,6 +123,18 @@ def inspect_df():
 # User chooses whether to view the summary
 
 def stats_module(df):
+    """
+    Display descriptive summary statistics for the dataset.
+
+    Parameters
+    ----------
+    df : DataFrame
+        The dataset to analyse.
+
+    Notes
+    -----
+    Uses df.describe() to show mean, std, min, max, and quartiles.
+    """
     summary_stats = df.describe()
 
     user_input = input("Display Summary Statistics of Dataset?\n")
@@ -126,7 +156,19 @@ def stats_module(df):
 # Computes mean, median, and standard deviation for selected variables (age, height, weight)
 # User selects which statistic to compute
 
-def variables_module(df):
+def age_module(df):
+    """
+    Compute summary statistics for the 'age' variable.
+
+    Parameters
+    ----------
+    df : DataFrame
+        The dataset containing the 'age' column.
+
+    Notes
+    -----
+    Allows the user to select mean, median, or standard deviation.
+    """
     mean_stats_age = df["age"].mean()
     median_stats_age = df["age"].median()
     std_stats_age = df["age"].std()
@@ -146,6 +188,18 @@ def variables_module(df):
         print("Invalid Input: Please Enter 1-3")
 
 def height_module(df):  
+    """
+    Compute summary statistics for the 'height' variable.
+
+    Parameters
+    ----------
+    df : DataFrame
+        The dataset containing the 'height' column.
+
+    Notes
+    -----
+    Allows the user to select mean, median, or standard deviation.
+    """
     mean_stats_height = df["height"].mean()
     median_stats_height = df["height"].median()
     std_stats_height = df["height"].std()
@@ -165,6 +219,18 @@ def height_module(df):
         print("Invalid Input: Please Enter 1-3")
 
 def weight_module(df):
+    """
+    Compute summary statistics for the 'weight' variable.
+
+    Parameters
+    ----------
+    df : DataFrame
+        The dataset containing the 'weight' column.
+
+    Notes
+    -----
+    Allows the user to select mean, median, or standard deviation.
+    """
     mean_stats_weight = df["weight"].mean()
     median_stats_weight = df["weight"].median()
     std_stats_weight = df["weight"].std()
@@ -192,6 +258,19 @@ def weight_module(df):
 # Helps users understand distributions and relationships
 
 def eda_vis_module(df):
+    """
+    Interactive menu for exploratory data analysis (EDA).
+
+    Provides:
+    - Histograms for age, height, and weight
+    - Scatter plots showing relationships between variables
+    - Linear trend line visualisations using numpy.polyfit
+
+    Parameters
+    ----------
+    df : DataFrame
+        The dataset used for visualisation.
+    """
     while True:
         print("\n----------------------------")
         print("-----Visualisation Menu-----")
@@ -296,6 +375,27 @@ def eda_vis_module(df):
     # 7. Optional bar‑chart comparison of training/testing metrics
 
 def machine_module(df):
+    """
+    Machine learning workflow menu for regression modelling.
+
+    Workflow includes:
+    - Optional correlation matrix heatmap
+    - Target variable selection (height or weight)
+    - Train/test split
+    - Feature scaling using StandardScaler
+    - Model selection:
+        * Linear Regression
+        * Support Vector Regression
+        * Random Forest Regression
+        * Decision Tree Regression
+    - Training and testing evaluation using R2, MSE, RMSE, MAE
+    - Optional bar-chart comparison of model performance
+
+    Parameters
+    ----------
+    df : DataFrame
+        The dataset used for training and evaluation.
+    """
     while True:
         print("\n----------------------------")
         print("-----Correlation Matrix-----")
@@ -508,6 +608,18 @@ def machine_module(df):
 # - Exit program
 
 def main():
+    """
+    Main program loop providing the user interface.
+
+    Routes the user to:
+    - Dataset inspection
+    - Summary statistics
+    - Visualisation module
+    - Machine learning module
+    - Program exit
+
+    This function controls the overall application flow.
+    """
     while True:
         display(Markdown("###### ========================================="))
         display(Markdown("#### -----Data Analysis Program Main Menu-----"))
